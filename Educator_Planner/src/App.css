@@ -1,4 +1,90 @@
-*{
-    background-color: black;
-    color: white;
-}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+  }
+  
+  .card {
+    background-color: #f4f4f4;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .input-container {
+    display: flex;
+    width: 100%; 
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button-add {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .button-add:hover {
+    background-color: #0056b3;
+  }
+  
+  .subject {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
+    margin-bottom: 10px;
+  }
+  
+  .subject-info {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .button-container {
+    display: flex;
+  }
+  
+  .button-increase {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .button-decrease {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .button:hover {
+    filter: brightness(1.1);
+  }
+  

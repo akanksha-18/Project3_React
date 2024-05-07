@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -6,11 +6,10 @@ function App() {
   const [newSubject, setNewSubject] = useState('');
   const [newHours, setNewHours] = useState('');
 
-  // Load subjects and hours from local storage
-  const savedSubjects = JSON.parse(localStorage.getItem('subjects')) || [];
-  if (savedSubjects.length > 0 && subjects.length === 0) {
+  useEffect(() => {
+    const savedSubjects = JSON.parse(localStorage.getItem('subjects')) || [];
     setSubjects(savedSubjects);
-  }
+  }, []);
 
   const addSubject = () => {
     if (newSubject && newHours) {
@@ -19,7 +18,6 @@ function App() {
       setNewSubject('');
       setNewHours('');
 
-      // Update local storage
       localStorage.setItem('subjects', JSON.stringify(updatedSubjects));
     }
   };
@@ -41,31 +39,39 @@ function App() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="App p-4">
-        <h1 className="text-2xl mb-4">Education Planner</h1>
-        <div className="mb-4">
+    <div className="container">
+      <div className="card">
+        <h1 className="title">Education Planner</h1>
+        <div className="input-container">
           <input
             type="text"
             placeholder="Subject"
             value={newSubject}
             onChange={(e) => setNewSubject(e.target.value)}
-            className="border rounded py-1 px-2 mr-2"
+            className="input"
           />
           <input
             type="number"
             placeholder="Hours"
             value={newHours}
             onChange={(e) => setNewHours(e.target.value)}
-            className="border rounded py-1 px-2 mr-2 w-16"
+            className="input"
           />
-          <button onClick={addSubject} className="bg-blue-500 text-white py-1 px-2 rounded">Add</button>
+          <button onClick={addSubject} className="button button-add">
+            Add
+          </button>
         </div>
         {subjects.map((subject, index) => (
-          <div key={index} className="flex items-center mb-2">
-            <div className="mr-2">{subject.subject} - {subject.hours} hours</div>
-            <button onClick={() => increaseHours(index)} className="bg-green-500 text-white py-1 px-2 rounded mr-2">+</button>
-            <button onClick={() => decreaseHours(index)} className="bg-red-500 text-white py-1 px-2 rounded">-</button>
+          <div key={index} className="subject">
+            <div className="subject-info">{subject.subject} - {subject.hours} hours</div>
+            <div className="button-container">
+              <button onClick={() => increaseHours(index)} className="button button-increase">
+                +
+              </button>
+              <button onClick={() => decreaseHours(index)} className="button button-decrease">
+                -
+              </button>
+            </div>
           </div>
         ))}
       </div>
